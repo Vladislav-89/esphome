@@ -8,7 +8,7 @@ namespace esphome {
 namespace bl0940 {
 
 static const float BL0940_PREF = 1430;
-static const float BL0940_UREF = 16400;
+static const float VOLTAGE_DIVIDER = 1650000/360; // VOLTAGE_DIVIDER 330k*5 + 360Ohm
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
 
 // Measured to 297J  per click according to power consumption of 5 minutes
@@ -88,8 +88,8 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   float max_temperature_diff_{0};
   // Divide by this to turn into Watt
   float power_reference_ = BL0940_PREF;
-  // Divide by this to turn into Volt
-  float voltage_reference_ = BL0940_UREF;
+  // Voltage(V) = V_RMS_Reg∗(Vref/79931)*VOLTAGE_DIVIDER
+  float voltage_reference_ = VOLTAGE_DIVIDER*(1,218/79931);
   // Divide by this to turn into Ampere
   float current_reference_ = BL0940_IREF;
   // Divide by this to turn into kWh
