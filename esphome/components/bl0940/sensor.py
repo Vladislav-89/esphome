@@ -23,6 +23,10 @@ from esphome.const import (
     STATE_CLASS_TOTAL_INCREASING,
 )
 
+CONF_VOLTAGE_DIVIDER_R1 = "voltage_divider_r1"
+CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
+
+
 DEPENDENCIES = ["uart"]
 
 
@@ -69,6 +73,8 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
+            cv.Optional(CONF_VOLTAGE_DIVIDER_R1): cv.float_,
+            cv.Optional(CONF_VOLTAGE_DIVIDER_R2): cv.float_,
         }
     )
     .extend(cv.polling_component_schema("60s"))
@@ -99,3 +105,8 @@ async def to_code(config):
     if external_temperature_config := config.get(CONF_EXTERNAL_TEMPERATURE):
         sens = await sensor.new_sensor(external_temperature_config)
         cg.add(var.set_external_temperature_sensor(sens))
+        
+    if (voltage_divider_r1 := config.get(CONF_VOLTAGE_DIVIDER_R1, None)) is not None:
+        cg.add(var.set_voltage_divider_r1(voltage_divider_r1))
+    if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
+        cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
