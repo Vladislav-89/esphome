@@ -8,7 +8,7 @@ namespace esphome {
 namespace bl0940 {
 
 static const float BL0940_PREF = 1430;
-static const float VOLTAGE_DIVIDER = 1650000/360; // VOLTAGE_DIVIDER 330k*5 + 360Ohm
+static const float VOLTAGE_DIVIDER = 1650/360; // VOLTAGE_DIVIDER 330k*5 + 360Ohm
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
 
 // Measured to 297J  per click according to power consumption of 5 minutes
