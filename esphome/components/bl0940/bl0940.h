@@ -89,7 +89,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   // Divide by this to turn into Watt
   float power_reference_ = BL0940_PREF;
   // Voltage(V) = V_RMS_Reg∗(Vref/79931)*VOLTAGE_DIVIDER
-  float voltage_reference_ = VOLTAGE_DIVIDER*(1,218/79931);
+  float voltage_reference_ = VOLTAGE_DIVIDER*(1.218/79931);
   // Divide by this to turn into Ampere
   float current_reference_ = BL0940_IREF;
   // Divide by this to turn into kWh
