@@ -8,7 +8,7 @@ namespace esphome {
 namespace bl0940 {
 
 static const float BL0940_PREF = 1430;
-static const float BL0940_UREF = 33000;
+static const float BL0940_UREF = 16400;
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
 
 // Measured to 297J  per click according to power consumption of 5 minutes
