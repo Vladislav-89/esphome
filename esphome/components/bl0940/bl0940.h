@@ -69,6 +69,24 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
     external_temperature_sensor_ = external_temperature_sensor;
   }
 
+
+  void set_voltage_divider_r1(float R1_ref) {
+    this->voltage_divider_r1_ = R1_ref;
+    this->voltage_divider_r1_set_ = true;
+  }
+  void set_voltage_divider_r2(float R2_ref) {
+    this->voltage_divider_r2_ = R2_ref;
+    this->voltage_divider_r2_set_ = true;
+  }
+
+
+
+
+
+
+
+
+
   void loop() override;
 
   void update() override;
@@ -85,12 +103,21 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   sensor::Sensor *internal_temperature_sensor_{nullptr};
   sensor::Sensor *external_temperature_sensor_{nullptr};
 
+
+
+
+
+  float voltage_divider_r1_ = VOLTAGE_DIVIDER_R1;
+  bool voltage_divider_r1_set_ = false;
+  float voltage_divider_r2_ = VOLTAGE_DIVIDER_R2;
+  bool voltage_divider_r2_set_ = false;
+
+
   // Max difference between two measurements of the temperature. Used to avoid noise.
   float max_temperature_diff_{0};
   // Divide by this to turn into Watt
   float power_reference_ = BL0940_PREF;
-  // Voltage(V) = V_RMS_Reg∗(Vref/79931)*VOLTAGE_DIVIDER
-  float voltage_reference_ = VOLTAGE_DIVIDER*(1.218/79931);
+
   // Divide by this to turn into Ampere
   float current_reference_ = BL0940_IREF;
   // Divide by this to turn into kWh
