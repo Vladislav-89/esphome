@@ -9,7 +9,7 @@ namespace bl0940 {
 
 static const float BL0940_PREF = 1430;
 static const float VOLTAGE_DIVIDER_R2 = 1950; // VOLTAGE_DIVIDER, R2 390kOhm*5
-static const float VOLTAGE_DIVIDER_R1 = 0.36; // VOLTAGE_DIVIDER, R1 0.36kOhm
+static const float VOLTAGE_DIVIDER_R1 = 0.51; // VOLTAGE_DIVIDER, R1 0.51kOhm
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
 
 // Measured to 297J  per click according to power consumption of 5 minutes
@@ -71,7 +71,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
   void set_voltage_divider_r1(float R1_ref) {
-    this->voltage_divider_r1_ = R1_ref;
+    this->voltage_divider_r1_ = R1_ref*1000;
     this->voltage_divider_r1_set_ = true;
   }
   void set_voltage_divider_r2(float R2_ref) {
@@ -107,7 +107,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
 
-  float voltage_divider_r1_ = VOLTAGE_DIVIDER_R1;
+  float voltage_divider_r1_ = VOLTAGE_DIVIDER_R1*1000;
   bool voltage_divider_r1_set_ = false;
   float voltage_divider_r2_ = VOLTAGE_DIVIDER_R2;
   bool voltage_divider_r2_set_ = false;
