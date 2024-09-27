@@ -56,8 +56,19 @@ union DataPacket {  // NOLINT(altera-struct-pack-align)
   };
 } __attribute__((packed));
 
+
+
+enum Current_Sensor : uint8_t {
+  Transformer = 1,
+  Shunt = 2,
+};
+
+
+
+
 class BL0940 : public PollingComponent, public uart::UARTDevice {
  public:
+  void set_current_sensor(Current_Sensor  sensor) { this->current_sensor_ = sensor; }
   void set_voltage_sensor(sensor::Sensor *voltage_sensor) { voltage_sensor_ = voltage_sensor; }
   void set_current_sensor(sensor::Sensor *current_sensor) { current_sensor_ = current_sensor; }
   void set_power_sensor(sensor::Sensor *power_sensor) { power_sensor_ = power_sensor; }
@@ -111,6 +122,10 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   bool voltage_divider_r1_set_ = false;
   float voltage_divider_r2_ = VOLTAGE_DIVIDER_R2;
   bool voltage_divider_r2_set_ = false;
+
+
+
+  Current_Sensor current_sensor_ = Transformer;
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
