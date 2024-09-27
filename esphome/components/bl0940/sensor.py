@@ -91,7 +91,7 @@ CONFIG_SCHEMA = (
                     SENSOR,
                     int=True,
                 ),
-
+            ),
             
             cv.Optional(CONF_VOLTAGE_DIVIDER_R1): cv.float_,
             cv.Optional(CONF_VOLTAGE_DIVIDER_R2): cv.float_,
