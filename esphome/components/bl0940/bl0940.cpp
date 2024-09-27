@@ -94,7 +94,7 @@ void BL0940::received_package_(const DataPacket *data) const {
     return;
   }
 
-  float v_rms = ((float) to_uint32_t(data->v_rms) * 1.218 * (voltage_divider_r1_+voltage_divider_r2_)) / (79931*voltage_divider_r2_*1000);
+  float v_rms = ((float) to_uint32_t(data->v_rms) * 1.218 * (voltage_divider_r2_+voltage_divider_r1_)) / (79931*voltage_divider_r1_*1000);
   float i_rms = (float) to_uint32_t(data->i_rms) / current_reference_;
   float watt = (float) to_int32_t(data->watt) / power_reference_;
   uint32_t cf_cnt = to_uint32_t(data->cf_cnt);
