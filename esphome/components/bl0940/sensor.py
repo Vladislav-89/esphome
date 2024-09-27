@@ -5,6 +5,7 @@ from esphome.const import (
     CONF_CURRENT,
     CONF_ENERGY,
     CONF_EXTERNAL_TEMPERATURE,
+    CONF_CURRENT_SENSOR,
     CONF_ID,
     CONF_INTERNAL_TEMPERATURE,
     CONF_POWER,
@@ -32,6 +33,18 @@ DEPENDENCIES = ["uart"]
 
 bl0940_ns = cg.esphome_ns.namespace("bl0940")
 BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
+
+Current_Sensor = bl0940_ns.enum("Current_Sensor")
+SENSOR = {
+    1: Current_Sensor.Transformer,
+    2: Current_Sensor.Shunt,
+}
+
+
+
+
+
+
 
 CONFIG_SCHEMA = (
     cv.Schema(
@@ -73,6 +86,13 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
+            cv.Optional(CONF_CURRENT_SENSOR, default="Transformer"): cv.All(
+                cv.enum(
+                    SENSOR,
+                    int=True,
+                ),
+
+            
             cv.Optional(CONF_VOLTAGE_DIVIDER_R1): cv.float_,
             cv.Optional(CONF_VOLTAGE_DIVIDER_R2): cv.float_,
         }
@@ -110,3 +130,5 @@ async def to_code(config):
         cg.add(var.set_voltage_divider_r1(voltage_divider_r1))
     if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
+        
+    cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
