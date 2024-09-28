@@ -97,9 +97,31 @@ void BL0940::received_package_(const DataPacket *data) const {
   float v_rms = ((float) to_uint32_t(data->v_rms) * 1.218 * (voltage_divider_r2_+voltage_divider_r1_)) / (79931*voltage_divider_r1_*1000);
   float i_rms = 0;
   //if (this->current_sensor_ == Transformer)
-  i_rms = 10;//(float) to_uint32_t(data->i_rms) / current_reference_;
+  //if (this->line_freq_ == LINE_FREQUENCY_60HZ)
+  //i_rms = 10;//(float) to_uint32_t(data->i_rms) / current_reference_;
   //if (this->current_sensor_ == Shunt)
   //i_rms = 50;//(float) to_uint32_t(data->i_rms) / current_reference_;
+    switch (this->line_freq_) {
+      case LINE_FREQUENCY_50HZ:
+        i_rms = 50
+        break;
+      case LINE_FREQUENCY_60HZ:
+        i_rms = 60
+        break;
+      default:
+        i_rms = NAN;
+
+
+
+
+
+
+
+
+
+
+
+
   
   float watt = (float) to_int32_t(data->watt) / power_reference_;
   uint32_t cf_cnt = to_uint32_t(data->cf_cnt);
