@@ -85,7 +85,7 @@ CONFIG_SCHEMA = (
             cv.Optional(CONF_CURRENT_SENSOR, default="50A"): cv.All(
                 cv.enum(
                     SENSOR,
-                    int=True,
+                    upper=True,
                 ),
             ),
             
