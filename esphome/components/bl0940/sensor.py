@@ -26,7 +26,7 @@ from esphome.const import (
 CONF_VOLTAGE_DIVIDER_R1 = "voltage_divider_r1"
 CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
 CONF_CURRENT_SENSOR = "current_sensor"
-CONF_SHUNT_RESISTOR = "shunt_resistor"
+CONF_SHUNT_RESISTOR = "shunt_resistor_mOhm"
 
 
 
@@ -131,6 +131,6 @@ async def to_code(config):
     if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
     if (shunt_resistor := config.get(CONF_SHUNT_RESISTOR, None)) is not None:
-        cg.add(var.set_shunt_resistor(shunt_resistor))
+        cg.add(var.set_shunt_resistor(shunt_resistor_mOhm))
     
     cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
