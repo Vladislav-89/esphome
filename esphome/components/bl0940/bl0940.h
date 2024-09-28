@@ -59,8 +59,8 @@ union DataPacket {  // NOLINT(altera-struct-pack-align)
 
 
 enum Current_Sensor : uint8_t {
-  Transformer = 1,
-  Shunt = 2,
+  TRANSFORMER = 1,
+  SHUNT = 2,
 };
 
 
@@ -125,7 +125,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
 
-  Current_Sensor current_sensor_ = Transformer;
+  Current_Sensor current_sensor_ = TRANSFORMER;
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
