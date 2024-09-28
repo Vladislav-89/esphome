@@ -33,10 +33,10 @@ DEPENDENCIES = ["uart"]
 bl0940_ns = cg.esphome_ns.namespace("bl0940")
 BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
-LineFrequency = bl0940_ns.enum("LineFrequency")
+sensor_t = bl0940_ns.enum("sensor_t")
 LINE_FREQS = {
-    50: LineFrequency.LINE_FREQUENCY_50HZ,
-    60: LineFrequency.LINE_FREQUENCY_60HZ,
+    50: sensor_t.LINE_FREQUENCY_50HZ,
+    60: sensor_t.LINE_FREQUENCY_60HZ,
 }
 
 
