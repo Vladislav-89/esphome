@@ -59,8 +59,8 @@ union DataPacket {  // NOLINT(altera-struct-pack-align)
 
 
 enum Current_Sensor : uint8_t {
-  TRANSFORMER = 1,
-  SHUNT = 2,
+  LINE_FREQUENCY_50HZ = 50,
+  LINE_FREQUENCY_60HZ = 60,
 };
 
 
@@ -125,7 +125,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
 
-  Current_Sensor current_sensor_ = 1;
+  Current_Sensor current_sensor_ = LINE_FREQUENCY_50HZ;
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
