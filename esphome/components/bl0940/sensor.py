@@ -26,6 +26,9 @@ from esphome.const import (
 CONF_VOLTAGE_DIVIDER_R1 = "voltage_divider_r1"
 CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
 CONF_CURRENT_SENSOR = "current_sensor"
+CONF_SHUNT_RESISTOR = "shunt_resistor"
+
+
 
 DEPENDENCIES = ["uart"]
 
@@ -91,6 +94,7 @@ CONFIG_SCHEMA = (
             
             cv.Optional(CONF_VOLTAGE_DIVIDER_R1): cv.float_,
             cv.Optional(CONF_VOLTAGE_DIVIDER_R2): cv.float_,
+            cv.Optional(CONF_SHUNT_RESISTOR): cv.float_,
         }
     )
     .extend(cv.polling_component_schema("60s"))
@@ -126,5 +130,7 @@ async def to_code(config):
         cg.add(var.set_voltage_divider_r1(voltage_divider_r1))
     if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
-        
+    if (shunt_resistor := config.get(CONF_SHUNT_RESISTOR, None)) is not None:
+        cg.add(var.set_shunt_resistor(shunt_resistor))
+    
     cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
