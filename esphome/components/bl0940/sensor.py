@@ -3,6 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import sensor, uart
 from esphome.const import (
     CONF_CURRENT,
+    CONF_CURRENT_SENSOR,
     CONF_ENERGY,
     CONF_EXTERNAL_TEMPERATURE,
     CONF_ID,
@@ -35,8 +36,8 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 Current_Sensor = bl0940_ns.enum("Current_Sensor")
 SENSOR = {
-    1: Current_Sensor.Transformer,
-    2: Current_Sensor.Shunt,
+    "Transformer": Current_Sensor.Transformer,
+    "Shunt": Current_Sensor.Shunt,
 }
 
 
@@ -85,7 +86,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(Current_Sensor, default="Transformer"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="Transformer"): cv.All(
                 cv.enum(
                     SENSOR,
                     int=True,
@@ -130,4 +131,4 @@ async def to_code(config):
     if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
         
-    cg.add(var.set_current_sensor(config[Current_Sensor]))
+    cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
