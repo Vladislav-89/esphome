@@ -133,7 +133,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   float shunt_resistor_ = SHUNT_RESISTOR_mOHhm;
   bool shunt_resistor_set_ = false;
   float CT_load_resistor_ = CT_LOAD_RESISTOR;
-  bool CT_load_resistor_ = false;
+  bool CT_load_resistor_set_ = false;
 
   sensor_t sensor_type_{CT};
 
