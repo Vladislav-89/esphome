@@ -7,9 +7,12 @@
 namespace esphome {
 namespace bl0940 {
 
+
+static const float VOLTAGE_DIVIDER_R2 = 1950; // VOLTAGE DIVIDER, R2 390kOhm*5
+static const float VOLTAGE_DIVIDER_R1 = 0.51; // VOLTAGE DIVIDER, R1 0.51kOhm
+static const float SHUNT_RESISTOR = 1; // SHUNT RESISTOR, RL 1mOhm
+
 static const float BL0940_PREF = 1430;
-static const float VOLTAGE_DIVIDER_R2 = 1950; // VOLTAGE_DIVIDER, R2 390kOhm*5
-static const float VOLTAGE_DIVIDER_R1 = 0.51; // VOLTAGE_DIVIDER, R1 0.51kOhm
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
 
 // Measured to 297J  per click according to power consumption of 5 minutes
@@ -79,8 +82,6 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   void set_external_temperature_sensor(sensor::Sensor *external_temperature_sensor) {
     external_temperature_sensor_ = external_temperature_sensor;
   }
-
-
   void set_voltage_divider_r1(float R1_ref) {
     this->voltage_divider_r1_ = R1_ref;
     this->voltage_divider_r1_set_ = true;
@@ -89,7 +90,10 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
     this->voltage_divider_r2_ = R2_ref;
     this->voltage_divider_r2_set_ = true;
   }
-
+  void set_shunt_resistor(float shunt_r) {
+    this->shunt_resistor = shunt_r;
+    this->shunt_resistor_set_ = true;
+  }
 
 
 
@@ -122,7 +126,8 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   bool voltage_divider_r1_set_ = false;
   float voltage_divider_r2_ = VOLTAGE_DIVIDER_R2;
   bool voltage_divider_r2_set_ = false;
-
+  float shunt_resistor_ = SHUNT_RESISTOR;
+  bool shunt_resistor_set_ = false;
 
 
   sensor_t sensor_type_{TRANSFORMER};
