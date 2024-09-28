@@ -68,7 +68,7 @@ enum Current_Sensor : uint8_t {
 
 class BL0940 : public PollingComponent, public uart::UARTDevice {
  public:
-  void set_current_sensor(Current_Sensor  sensor) { this->current_sensor_ = sensor; }
+  void set_current_sensor(Current_Sensor  sensor5) { this->current_sensor_ = sensor5; }
   void set_voltage_sensor(sensor::Sensor *voltage_sensor) { voltage_sensor_ = voltage_sensor; }
   void set_current_sensor(sensor::Sensor *current_sensor) { current_sensor_ = current_sensor; }
   void set_power_sensor(sensor::Sensor *power_sensor) { power_sensor_ = power_sensor; }
