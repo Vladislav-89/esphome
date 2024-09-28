@@ -97,8 +97,8 @@ void BL0940::received_package_(const DataPacket *data) const {
   float v_rms = ((float) to_uint32_t(data->v_rms) * 1.218 * (voltage_divider_r2_ + voltage_divider_r1_)) / (79931 * voltage_divider_r1_ * 1000);
   float i_rms = 0;
   switch (this->sensor_type_) {
-      case TRANSFORMER:
-        i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * ((6 * 1000)/2000));
+      case CT:
+        i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * ((CT_load_resistor_ * 1000)/2000));
         break;
       case SHUNT:
         i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * shunt_resistor_);
