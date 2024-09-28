@@ -135,7 +135,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   float CT_load_resistor_ = CT_LOAD_RESISTOR;
   bool CT_load_resistor_ = false;
 
-  sensor_t sensor_type_{TRANSFORMER};
+  sensor_t sensor_type_{CT};
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
