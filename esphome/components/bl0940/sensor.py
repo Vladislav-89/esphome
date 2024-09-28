@@ -25,7 +25,7 @@ from esphome.const import (
 
 CONF_VOLTAGE_DIVIDER_R1 = "voltage_divider_r1"
 CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
-
+CONF_CURRENT_SENSOR = "current_sensor"
 
 DEPENDENCIES = ["uart"]
 
@@ -39,11 +39,6 @@ SENSOR = {
     "Shunt": Current_Sensor.Shunt,
 }
 
-
-
-TYPES = [
-    CONF_CURRENT_SENSOR,
-]
 
 
 
