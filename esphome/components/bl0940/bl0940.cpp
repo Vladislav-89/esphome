@@ -110,8 +110,7 @@ void BL0940::received_package_(const DataPacket *data) const {
         break;
       default:
         i_rms = NAN;
-
-
+  }
 
 
 
