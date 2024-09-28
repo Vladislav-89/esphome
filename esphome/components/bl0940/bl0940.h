@@ -12,6 +12,7 @@ static const float VOLTAGE_DIVIDER_R2 = 1950; // VOLTAGE DIVIDER, R2 390kOhm*5
 static const float VOLTAGE_DIVIDER_R1 = 0.51; // VOLTAGE DIVIDER, R1 0.51kOhm
 static const float SHUNT_RESISTOR_mOHhm = 1; // SHUNT RESISTOR, RL 1mOhm
 static const float CT_LOAD_RESISTOR = 3; // CT LOAD RESISTOR, R 3Ohm
+static const float CT_TURNS_RATIO = 2000; // CT TURNS RATIO, 2000
 
 static const float BL0940_PREF = 1430;
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
@@ -99,7 +100,10 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
     this->CT_load_resistor_ = CT_r;
     this->CT_load_resistor_set_ = true;
   }
-
+  void set_CT_turns_ratio(float CT_tr) {
+    this->CT_turns_ratio_ = CT_tr;
+    this->CT_turns_ratio_set_ = true;
+  }
 
 
 
@@ -134,6 +138,8 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   bool shunt_resistor_set_ = false;
   float CT_load_resistor_ = CT_LOAD_RESISTOR;
   bool CT_load_resistor_set_ = false;
+  float CT_turns_ratio_ = CT_TURNS_RATIO;
+  bool CT_turns_ratio_set_ = false;
 
   sensor_t sensor_type_{CT};
 
