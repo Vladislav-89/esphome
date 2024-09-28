@@ -103,10 +103,10 @@ void BL0940::received_package_(const DataPacket *data) const {
   //i_rms = 50;//(float) to_uint32_t(data->i_rms) / current_reference_;
     switch (this->line_freq_) {
       case LINE_FREQUENCY_50HZ:
-        i_rms = 50
+        i_rms = 50;
         break;
       case LINE_FREQUENCY_60HZ:
-        i_rms = 60
+        i_rms = 60;
         break;
       default:
         i_rms = NAN;
