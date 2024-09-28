@@ -3,7 +3,6 @@ import esphome.config_validation as cv
 from esphome.components import sensor, uart
 from esphome.const import (
     CONF_CURRENT,
-    CONF_CURRENT_SENSOR,
     CONF_ENERGY,
     CONF_EXTERNAL_TEMPERATURE,
     CONF_ID,
@@ -42,7 +41,9 @@ SENSOR = {
 
 
 
-
+TYPES = [
+    CONF_CURRENT_SENSOR,
+]
 
 
 
