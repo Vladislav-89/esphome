@@ -101,7 +101,7 @@ void BL0940::received_package_(const DataPacket *data) const {
         i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * ((6 * 1000)/2000));
         break;
       case SHUNT:
-        i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * 1);
+        i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * shunt_resistor_);
         break;
       default:
         i_rms = NAN;
