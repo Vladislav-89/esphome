@@ -35,8 +35,8 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 Current_Sensor = bl0940_ns.enum("Current_Sensor")
 SENSOR = {
-    1: Current_Sensor.Transformer,
-    2: Current_Sensor.Shunt,
+    50: LineFrequency.LINE_FREQUENCY_50HZ,
+    60: LineFrequency.LINE_FREQUENCY_60HZ,
 }
 
 
@@ -82,7 +82,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="1"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="50"): cv.All(
                 cv.enum(
                     SENSOR,
                     int=True,
