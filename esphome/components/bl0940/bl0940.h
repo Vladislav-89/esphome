@@ -68,7 +68,7 @@ enum sensor_t : uint8_t {
 
 class BL0940 : public PollingComponent, public uart::UARTDevice {
  public:
-  void set_current_sensor(sensor_t freq) { this->line_freq_ = freq; }
+  void set_current_sensor(sensor_t sensor) { this->sensor_type_ = sensor; }
   void set_voltage_sensor(sensor::Sensor *voltage_sensor) { voltage_sensor_ = voltage_sensor; }
   void set_current_sensor(sensor::Sensor *current_sensor) { current_sensor_ = current_sensor; }
   void set_power_sensor(sensor::Sensor *power_sensor) { power_sensor_ = power_sensor; }
@@ -125,7 +125,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
 
-  sensor_t line_freq_ = TRANSFORMER;
+  sensor_t sensor_type_ = TRANSFORMER;
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
