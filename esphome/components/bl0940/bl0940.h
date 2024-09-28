@@ -125,7 +125,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
 
-  sensor_t sensor_type_ = TRANSFORMER;
+  sensor_t sensor_type_{TRANSFORMER};
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
