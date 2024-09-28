@@ -130,7 +130,7 @@ async def to_code(config):
         cg.add(var.set_voltage_divider_r1(voltage_divider_r1))
     if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
-    if (shunt_resistor := config.get(CONF_SHUNT_RESISTOR, None)) is not None:
+    if (shunt_resistor_mOhm := config.get(CONF_SHUNT_RESISTOR, None)) is not None:
         cg.add(var.set_shunt_resistor(shunt_resistor_mOhm))
     
     cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
