@@ -107,8 +107,6 @@ void BL0940::received_package_(const DataPacket *data) const {
         i_rms = (((float) to_uint32_t(data->i_rms)) * 1.218) / (324004 * shunt_resistor_);
         watt = (((float) to_int32_t(data->watt)) * 1.483524 * (voltage_divider_r2_ + voltage_divider_r1_)) / (4046 * shunt_resistor_ * voltage_divider_r1_ * 1000);// 1,483524 = Vref^2
         break;
-      default:
-        i_rms = NAN;
   }
 
 
