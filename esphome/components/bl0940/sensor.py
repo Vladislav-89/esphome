@@ -34,7 +34,7 @@ bl0940_ns = cg.esphome_ns.namespace("bl0940")
 BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 sensor_t = bl0940_ns.enum("sensor_t")
-LINE_FREQS = {
+SENSOR = {
     50: sensor_t.TRANSFORMER,
     60: sensor_t.SHUNT,
 }
@@ -84,7 +84,7 @@ CONFIG_SCHEMA = (
             ),
             cv.Optional(CONF_CURRENT_SENSOR, default="50"): cv.All(
                 cv.enum(
-                    LINE_FREQS,
+                    SENSOR,
                     int=True,
                 ),
             ),
