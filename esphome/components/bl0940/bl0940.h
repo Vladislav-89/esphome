@@ -10,7 +10,7 @@ namespace bl0940 {
 
 static const float VOLTAGE_DIVIDER_R2 = 1950; // VOLTAGE DIVIDER, R2 390kOhm*5
 static const float VOLTAGE_DIVIDER_R1 = 0.51; // VOLTAGE DIVIDER, R1 0.51kOhm
-static const float SHUNT_RESISTOR = 1; // SHUNT RESISTOR, RL 1mOhm
+static const float SHUNT_RESISTOR_mOHhm = 1; // SHUNT RESISTOR, RL 1mOhm
 
 static const float BL0940_PREF = 1430;
 static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
@@ -126,7 +126,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
   bool voltage_divider_r1_set_ = false;
   float voltage_divider_r2_ = VOLTAGE_DIVIDER_R2;
   bool voltage_divider_r2_set_ = false;
-  float shunt_resistor_ = SHUNT_RESISTOR;
+  float shunt_resistor_ = SHUNT_RESISTOR_mOHhm;
   bool shunt_resistor_set_ = false;
 
 
