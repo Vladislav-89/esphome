@@ -82,7 +82,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="Transformer"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="1"): cv.All(
                 cv.enum(
                     SENSOR,
                     int=True,
