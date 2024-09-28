@@ -91,7 +91,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
     this->voltage_divider_r2_set_ = true;
   }
   void set_shunt_resistor(float shunt_r) {
-    this->shunt_resistor_mOhm = shunt_r;
+    this->shunt_resistor_ = shunt_r;
     this->shunt_resistor_set_ = true;
   }
 
