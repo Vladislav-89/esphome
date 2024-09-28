@@ -70,7 +70,7 @@ CONFIG_SCHEMA = (
             ),
             cv.Optional(CONF_ENERGY): sensor.sensor_schema(
                 unit_of_measurement=UNIT_KILOWATT_HOURS,
-                accuracy_decimals=3,
+                accuracy_decimals=5,
                 device_class=DEVICE_CLASS_ENERGY,
                 state_class=STATE_CLASS_TOTAL_INCREASING,
             ),
