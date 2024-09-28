@@ -26,8 +26,8 @@ from esphome.const import (
 CONF_VOLTAGE_DIVIDER_R1 = "voltage_divider_r1"
 CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
 CONF_CURRENT_SENSOR = "current_sensor"
-CONF_SHUNT_RESISTOR = "shunt_resistor_mOhm"
-
+CONF_SHUNT_RESISTOR = "shunt_resistance_mOhm"
+CONF_CT_LOAD_RESISTOR = "CT_load_resistor"
 
 
 DEPENDENCIES = ["uart"]
@@ -38,7 +38,7 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 sensor_t = bl0940_ns.enum("sensor_t")
 SENSOR = {
-    "TRANSFORMER": sensor_t.TRANSFORMER,
+    "CT": sensor_t.CT,
     "SHUNT": sensor_t.SHUNT,
 }
 
@@ -85,7 +85,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="TRANSFORMER"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="CT"): cv.All(
                 cv.enum(
                     SENSOR,
                     upper=True,
@@ -95,6 +95,7 @@ CONFIG_SCHEMA = (
             cv.Optional(CONF_VOLTAGE_DIVIDER_R1): cv.float_,
             cv.Optional(CONF_VOLTAGE_DIVIDER_R2): cv.float_,
             cv.Optional(CONF_SHUNT_RESISTOR): cv.float_,
+            cv.Optional(CONF_CT_LOAD_RESISTOR): cv.float_,
         }
     )
     .extend(cv.polling_component_schema("60s"))
@@ -132,5 +133,7 @@ async def to_code(config):
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
     if (shunt_resistor_mOhm := config.get(CONF_SHUNT_RESISTOR, None)) is not None:
         cg.add(var.set_shunt_resistor(shunt_resistor_mOhm))
+    if (CT_load_resistor := config.get(CONF_CT_LOAD_RESISTOR, None)) is not None:
+        cg.add(var.set_CT_load_resistor(CT_load_resistor))
     
     cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
