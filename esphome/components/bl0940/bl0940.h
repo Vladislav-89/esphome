@@ -58,9 +58,9 @@ union DataPacket {  // NOLINT(altera-struct-pack-align)
 
 
 
-enum sensor_t : uint8_t {
-  TRANSFORMER = 50,
-  SHUNT = 60,
+enum sensor_t {
+  TRANSFORMER,
+  SHUNT,
 };
 
 
