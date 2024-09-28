@@ -35,8 +35,8 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 sensor_t = bl0940_ns.enum("sensor_t")
 SENSOR = {
-    "transformer": sensor_t.TRANSFORMER,
-    "shunt": sensor_t.SHUNT,
+    "TRANSFORMER": sensor_t.TRANSFORMER,
+    "SHUNT": sensor_t.SHUNT,
 }
 
 
@@ -82,7 +82,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="transformer"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="TRANSFORMER"): cv.All(
                 cv.enum(
                     SENSOR,
                     upper=True,
