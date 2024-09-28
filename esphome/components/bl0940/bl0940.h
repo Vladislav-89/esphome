@@ -58,7 +58,7 @@ union DataPacket {  // NOLINT(altera-struct-pack-align)
 
 
 
-enum Current_Sensor : uint8_t {
+enum LineFrequency : uint8_t {
   LINE_FREQUENCY_50HZ = 50,
   LINE_FREQUENCY_60HZ = 60,
 };
@@ -68,7 +68,7 @@ enum Current_Sensor : uint8_t {
 
 class BL0940 : public PollingComponent, public uart::UARTDevice {
  public:
-  void set_current_sensor(Current_Sensor  sensor5) { this->current_sensor_ = sensor5; }
+  void set_current_sensor(LineFrequency freq) { this->line_freq_ = freq; }
   void set_voltage_sensor(sensor::Sensor *voltage_sensor) { voltage_sensor_ = voltage_sensor; }
   void set_current_sensor(sensor::Sensor *current_sensor) { current_sensor_ = current_sensor; }
   void set_power_sensor(sensor::Sensor *power_sensor) { power_sensor_ = power_sensor; }
@@ -125,7 +125,7 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
 
 
-  Current_Sensor current_sensor_ = LINE_FREQUENCY_50HZ;
+  LineFrequency line_freq_ = LINE_FREQUENCY_50HZ;
 
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
