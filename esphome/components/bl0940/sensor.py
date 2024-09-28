@@ -35,8 +35,8 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 sensor_t = bl0940_ns.enum("sensor_t")
 SENSOR = {
-    50: sensor_t.TRANSFORMER,
-    60: sensor_t.SHUNT,
+    "50A": sensor_t.TRANSFORMER,
+    "60A": sensor_t.SHUNT,
 }
 
 
@@ -82,7 +82,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="50"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="50A"): cv.All(
                 cv.enum(
                     SENSOR,
                     int=True,
