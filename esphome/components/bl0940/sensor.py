@@ -28,6 +28,7 @@ CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
 CONF_CURRENT_SENSOR = "current_sensor"
 CONF_SHUNT_RESISTOR = "shunt_resistance_mOhm"
 CONF_CT_LOAD_RESISTOR = "CT_load_resistor"
+CONF_CT_TURNS_RATIO = "CT_turns_ratio"
 
 
 DEPENDENCIES = ["uart"]
@@ -96,6 +97,7 @@ CONFIG_SCHEMA = (
             cv.Optional(CONF_VOLTAGE_DIVIDER_R2): cv.float_,
             cv.Optional(CONF_SHUNT_RESISTOR): cv.float_,
             cv.Optional(CONF_CT_LOAD_RESISTOR): cv.float_,
+            cv.Optional(CONF_CT_TURNS_RATIO): cv.float_, 
         }
     )
     .extend(cv.polling_component_schema("60s"))
@@ -135,5 +137,7 @@ async def to_code(config):
         cg.add(var.set_shunt_resistor(shunt_resistor_mOhm))
     if (CT_load_resistor := config.get(CONF_CT_LOAD_RESISTOR, None)) is not None:
         cg.add(var.set_CT_load_resistor(CT_load_resistor))
+    if (CT_turns_ratio := config.get(CONF_CT_TURNS_RATIO, None)) is not None:
+        cg.add(var.set_CT_turns_ratio(CT_turns_ratio))
     
     cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
