@@ -85,7 +85,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT, default="Transformer"): cv.All(
+            cv.Optional(Current_Sensor, default="Transformer"): cv.All(
                 cv.enum(
                     SENSOR,
                     int=True,
@@ -130,4 +130,4 @@ async def to_code(config):
     if (voltage_divider_r2 := config.get(CONF_VOLTAGE_DIVIDER_R2, None)) is not None:
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
         
-    cg.add(var.set_current_sensor(config[CONF_CURRENT]))
+    cg.add(var.set_current_sensor(config[Current_Sensor]))
