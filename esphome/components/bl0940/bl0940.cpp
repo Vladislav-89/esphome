@@ -103,10 +103,10 @@ void BL0940::received_package_(const DataPacket *data) const {
   //i_rms = 50;//(float) to_uint32_t(data->i_rms) / current_reference_;
     switch (this->sensor_type_) {
       case TRANSFORMER:
-        i_rms = 50;
+        i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * ((6 * 1000)/2000));
         break;
       case SHUNT:
-        i_rms = 60;
+        i_rms = (float) to_uint32_t(data->i_rms) * 1.218 / (324004 * 1);
         break;
       default:
         i_rms = NAN;
