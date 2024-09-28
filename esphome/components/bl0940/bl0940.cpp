@@ -101,7 +101,7 @@ void BL0940::received_package_(const DataPacket *data) const {
   //i_rms = 10;//(float) to_uint32_t(data->i_rms) / current_reference_;
   //if (this->current_sensor_ == Shunt)
   //i_rms = 50;//(float) to_uint32_t(data->i_rms) / current_reference_;
-    switch (this->line_freq_) {
+    switch (this->sensor_type_) {
       case TRANSFORMER:
         i_rms = 50;
         break;
