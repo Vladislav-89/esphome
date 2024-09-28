@@ -27,7 +27,7 @@ CONF_VOLTAGE_DIVIDER_R1 = "voltage_divider_r1"
 CONF_VOLTAGE_DIVIDER_R2 = "voltage_divider_r2"
 CONF_CURRENT_SENSOR = "current_sensor"
 CONF_SHUNT_RESISTOR = "shunt_resistance_mOhm"
-CONF_CT_LOAD_RESISTOR = "CT_load_resistor"
+CONF_CT_LOAD_RESISTOR = "ct_load_resistor"
 
 
 DEPENDENCIES = ["uart"]
@@ -133,7 +133,7 @@ async def to_code(config):
         cg.add(var.set_voltage_divider_r2(voltage_divider_r2))
     if (shunt_resistor_mOhm := config.get(CONF_SHUNT_RESISTOR, None)) is not None:
         cg.add(var.set_shunt_resistor(shunt_resistor_mOhm))
-    if (CT_load_resistor := config.get(CONF_CT_LOAD_RESISTOR, None)) is not None:
-        cg.add(var.set_CT_load_resistor(CT_load_resistor))
+    if (ct_load_resistor := config.get(CONF_CT_LOAD_RESISTOR, None)) is not None:
+        cg.add(var.set_CT_load_resistor(ct_load_resistor))
     
     cg.add(var.set_current_sensor(config[CONF_CURRENT_SENSOR]))
