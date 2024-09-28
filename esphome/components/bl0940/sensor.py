@@ -33,10 +33,10 @@ DEPENDENCIES = ["uart"]
 bl0940_ns = cg.esphome_ns.namespace("bl0940")
 BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
-Current_Sensor = bl0940_ns.enum("Current_Sensor")
-SENSOR = {
-    50: Current_Sensor.LINE_FREQUENCY_50HZ,
-    60: Current_Sensor.LINE_FREQUENCY_60HZ,
+LineFrequency = bl0942_ns.enum("LineFrequency")
+LINE_FREQS = {
+    50: LineFrequency.LINE_FREQUENCY_50HZ,
+    60: LineFrequency.LINE_FREQUENCY_60HZ,
 }
 
 
@@ -82,9 +82,9 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="50"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="50HZ"): cv.All(
                 cv.enum(
-                    SENSOR,
+                    LINE_FREQS,
                     int=True,
                 ),
             ),
