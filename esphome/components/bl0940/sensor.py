@@ -35,8 +35,8 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 Current_Sensor = bl0940_ns.enum("Current_Sensor")
 SENSOR = {
-    "Transformer": Current_Sensor.Transformer,
-    "Shunt": Current_Sensor.Shunt,
+    1: Current_Sensor.Transformer,
+    2: Current_Sensor.Shunt,
 }
 
 
