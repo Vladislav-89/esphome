@@ -82,7 +82,7 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_TEMPERATURE,
                 state_class=STATE_CLASS_MEASUREMENT,
             ),
-            cv.Optional(CONF_CURRENT_SENSOR, default="50HZ"): cv.All(
+            cv.Optional(CONF_CURRENT_SENSOR, default="50"): cv.All(
                 cv.enum(
                     LINE_FREQS,
                     int=True,
