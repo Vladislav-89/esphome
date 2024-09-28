@@ -35,8 +35,8 @@ BL0940 = bl0940_ns.class_("BL0940", cg.PollingComponent, uart.UARTDevice)
 
 sensor_t = bl0940_ns.enum("sensor_t")
 LINE_FREQS = {
-    50: sensor_t.LINE_FREQUENCY_50HZ,
-    60: sensor_t.LINE_FREQUENCY_60HZ,
+    50: sensor_t.TRANSFORMER,
+    60: sensor_t.SHUNT,
 }
 
 
