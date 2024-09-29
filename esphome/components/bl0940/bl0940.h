@@ -8,11 +8,11 @@ namespace esphome {
 namespace bl0940 {
 
 
-static const float VOLTAGE_DIVIDER_R2 = 1950; // VOLTAGE DIVIDER, R2 390kOhm*5
+static const float VOLTAGE_DIVIDER_R2 = 1950.0; // VOLTAGE DIVIDER, R2 390kOhm*5
 static const float VOLTAGE_DIVIDER_R1 = 0.51; // VOLTAGE DIVIDER, R1 0.51kOhm
-static const float SHUNT_RESISTOR_mOHhm = 1; // SHUNT RESISTOR, RL 1mOhm
-static const float CT_LOAD_RESISTOR = 3; // CT LOAD RESISTOR, R 3Ohm
-static const float CT_TURNS_RATIO = 2000; // CT TURNS RATIO, 2000
+static const float SHUNT_RESISTOR_mOHhm = 1.0; // SHUNT RESISTOR, RL 1mOhm
+static const float CT_LOAD_RESISTOR = 3.0; // CT LOAD RESISTOR, R 3Ohm
+static const float CT_TURNS_RATIO = 2000.0; // CT TURNS RATIO, 2000
 static const float Vref = 1.218; //[V]
 
 
