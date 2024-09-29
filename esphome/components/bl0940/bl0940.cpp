@@ -94,7 +94,7 @@ void BL0940::received_package_(const DataPacket *data) const {
     return;
   }
 
-  float v_rms = (((float) to_uint32_t(data->v_rms)) * 1.218 * (voltage_divider_r2_ + voltage_divider_r1_)) / (79931 * voltage_divider_r1_ * 1000);
+  float v_rms = ((float) to_uint32_t(data->v_rms) * Vref * (voltage_divider_r2_ + voltage_divider_r1_)) / (79931.0 * voltage_divider_r1_ * 1000.0);
   float i_rms = 0;
   float watt = 0;
   float total_energy_consumption = 0;
@@ -104,7 +104,7 @@ void BL0940::received_package_(const DataPacket *data) const {
   
   switch (this->sensor_type_) {
       case CT:
-        i_rms = (((float) to_uint32_t(data->i_rms)) * 1.218) / (324004 * ((CT_load_resistor_ * 1000) / CT_turns_ratio_));
+        i_rms = ((float) to_uint32_t(data->i_rms) * Vref) / (324004.0 * CT_load_resistor_ * 1000.0 / CT_turns_ratio_);
         watt = (((float) to_int32_t(data->watt)) * 1.483524 * (voltage_divider_r2_ + voltage_divider_r1_)) / (4046 * ((CT_load_resistor_ * 1000) / CT_turns_ratio_) * voltage_divider_r1_ * 100);// 1,483524 = Vref^2
         total_energy_consumption = (float) to_uint32_t(data->cf_cnt);// ((float) to_uint32_t(data->cf_cnt) * 1638.4 * 256 * 1.483524 * (voltage_divider_r2_ + voltage_divider_r1_)) / (3600000 * 4046 * ((CT_load_resistor_ * 1000) / CT_turns_ratio_) * voltage_divider_r1_ * 1000);
       break;
