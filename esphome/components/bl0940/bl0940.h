@@ -14,12 +14,7 @@ static const float SHUNT_RESISTOR_mOHhm = 1; // SHUNT RESISTOR, RL 1mOhm
 static const float CT_LOAD_RESISTOR = 3; // CT LOAD RESISTOR, R 3Ohm
 static const float CT_TURNS_RATIO = 2000; // CT TURNS RATIO, 2000
 
-static const float BL0940_PREF = 1430;
-static const float BL0940_IREF = 275000;  // 2750 from tasmota. Seems to generate values 100 times too high
 
-// Measured to 297J  per click according to power consumption of 5 minutes
-// Converted to kWh (3.6MJ per kwH). Used to be 256 * 1638.4
-static const float BL0940_EREF = 3.6e6 / 297;
 
 struct ube24_t {  // NOLINT(readability-identifier-naming,altera-struct-pack-align)
   uint8_t l;
@@ -146,20 +141,12 @@ class BL0940 : public PollingComponent, public uart::UARTDevice {
 
   // Max difference between two measurements of the temperature. Used to avoid noise.
   float max_temperature_diff_{0};
-  // Divide by this to turn into Watt
-  float power_reference_ = BL0940_PREF;
 
-  // Divide by this to turn into Ampere
-  float current_reference_ = BL0940_IREF;
-  // Divide by this to turn into kWh
-  float energy_reference_ = BL0940_EREF;
 
   float update_temp_(sensor::Sensor *sensor, ube16_t packed_temperature) const;
 
   static uint32_t to_uint32_t(ube24_t input);
-
   static int32_t to_int32_t(sbe24_t input);
-
   static bool validate_checksum(const DataPacket *data);
 
   void received_package_(const DataPacket *data) const;
